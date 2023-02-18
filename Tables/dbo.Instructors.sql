@@ -1,9 +1,15 @@
 ﻿CREATE TABLE [dbo].[Instructors] (
-  [id] [int] NOT NULL,
-  [name] [nchar](10) NULL,
+  [Ins_Id] [int] NOT NULL,
+  [Fname] [nchar](10) NULL,
+  [Lname] [nchar](10) NULL,
   [age] [int] NULL,
-  [Salary] [float] NULL,
-  [st_id] [nchar](10) NULL,
-  CONSTRAINT [PK_Instructors] PRIMARY KEY CLUSTERED ([id])
+  [email] [varchar](25) NULL,
+  [street] [nchar](10) NULL,
+  [City] [nchar](20) NULL,
+  [Zip_Code] [char](10) NULL,
+  [password] [char](20) NULL,
+  [salary] [numeric] NULL,
+  [Dept_Id] [int] NOT NULL,
+  CONSTRAINT [PK_Instructors] PRIMARY KEY CLUSTERED ([Ins_Id])
 )
 GO
