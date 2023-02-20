@@ -31,16 +31,23 @@ GO
 GO
 
 -- 3- create Courses Table
---DROP TABLE IF EXISTS dbo.courses
---CREATE TABLE courses(
---	id INT IDENTITY,
---	name NVARCHAR(200) NOT NULL,
---	CONSTRAINT course_id_pk PRIMARY KEY(id),
---);
+DROP TABLE IF EXISTS dbo.courses
+CREATE TABLE courses(
+	id INT IDENTITY,
+	name NVARCHAR(200) NOT NULL,
+	instructor_id INT,
+	CONSTRAINT course_id_pk PRIMARY KEY(id),
+	CONSTRAINT fk_courses_instructor_id FOREIGN KEY (instructor_id) REFERENCES Instructors(Ins_Id) ON UPDATE CASCADE ON DELETE SET NULL
+);
 
 -- 4- Add relation forigin key with Courses table.
-
-GO
+--ALTER TABLE dbo.courses
+--	ADD instructor_id INT
+--GO
+--ALTER TABLE dbo.courses
+--            	ADD CONSTRAINT fk_courses_instructor_id FOREIGN KEY (instructor_id) REFERENCES Instructors(Ins_Id)          	
+--				GO
+           
 -- Questions Stored Procedure
 -- 1- Add New Question
 -- Add choices to a question
