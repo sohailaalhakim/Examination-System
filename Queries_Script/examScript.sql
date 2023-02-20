@@ -61,7 +61,7 @@ AS
 			ORDER BY NEWID()
 
 			SELECT q.* FROM exams_questions eq, questions q, exams e
-			WHERE eq.exam_id = e.id AND eq.question_id = q.id
+			WHERE eq.exam_id = e.id AND eq.question_id = q.id AND eq.exam_id = @examId
 			END		
 	END TRY
 	BEGIN CATCH
