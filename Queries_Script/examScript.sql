@@ -130,3 +130,85 @@ AS
 						,@student_id = 2
 						,@questionId = 5
 						,@ans = 'B'
+
+
+-- Exam Correction Stored procedure
+DROP PROCEDURE IF EXISTS dbo.PROC_examCorrect
+GO
+CREATE PROCEDURE  [dbo].[PROC_examCorrect]
+    @exam_id INT,
+	@student_id INT,
+	@course_id INT
+AS
+	BEGIN TRY
+		IF NOT EXISTS (SELECT * FROM exams WHERE id=@exam_id)
+			BEGIN
+            	SELECT 'Exam do not exist' AS 'errMessage'
+            END
+		ELSE IF NOT EXISTS (SELECT * FROM students s WHERE s.Std_id=@student_id)
+			BEGIN
+            	SELECT 'Student does not exist' AS 'errMessage'
+            END
+		ELSE IF NOT EXISTS (SELECT * FROM courses c WHERE c.id=@course_id)
+		BEGIN
+            SELECT 'Course does not exist' AS 'errMessage'
+        END
+		ELSE
+			BEGIN	
+				DECLARE @score INT
+
+				SELECT @score = COUNT(*) FROM exam_answers ea
+				INNER JOIN exams e ON e.id = ea.exam_id
+				INNER JOIN questions q ON ea.question_id = q.id
+				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id AND q.correct_ans = ea.answer
+
+				UPDATE courses_students SET grade = @score WHERE student_id = @student_id AND course_id = @course_id 
+			END		
+	END TRY
+	BEGIN CATCH
+	 SELECT ERROR_MESSAGE() AS errorMessage
+	END CATCH
+
+
+	EXEC PROC_examCorrect @exam_id = 7
+						 ,@student_id = 7
+						 ,@course_id = 11
+			
+			
+DROP PROCEDURE IF EXISTS dbo.PROC_getStudentAnswerWithModel
+GO
+CREATE PROCEDURE  [dbo].[PROC_getStudentAnswerWithModel]
+    @exam_id INT,
+	@student_id INT,
+	@course_id INT
+AS
+	BEGIN TRY
+		IF NOT EXISTS (SELECT * FROM exams WHERE id=@exam_id)
+			BEGIN
+            	SELECT 'Exam do not exist' AS 'errMessage'
+            END
+		ELSE IF NOT EXISTS (SELECT * FROM students s WHERE s.Std_id=@student_id)
+			BEGIN
+            	SELECT 'Student does not exist' AS 'errMessage'
+            END
+		ELSE IF NOT EXISTS (SELECT * FROM courses c WHERE c.id=@course_id)
+		BEGIN
+            SELECT 'Course does not exist' AS 'errMessage'
+        END
+		ELSE
+			BEGIN	
+				SELECT q.content, q.correct_ans, ea.answer AS 'student_ans' FROM exam_answers ea
+				INNER JOIN exams e ON e.id = ea.exam_id
+				INNER JOIN questions q ON ea.question_id = q.id
+				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id AND q.correct_ans = ea.answer
+			END		
+	END TRY
+	BEGIN CATCH
+	 SELECT ERROR_MESSAGE() AS errorMessage
+	END CATCH
+	
+
+	
+	EXEC PROC_getStudentAnswerWithModel @exam_id = 7
+						 ,@student_id = 7
+						 ,@course_id = 11
