@@ -4,10 +4,15 @@ CREATE TABLE courses_students(
 	id INT IDENTITY,
 	course_id INT,
 	student_id INT,
+	grade INT,
 	CONSTRAINT id_course_student_pk PRIMARY KEY (id),
 	CONSTRAINT cs_course_id_fk FOREIGN KEY (course_id) REFERENCES courses(id) ON UPDATE CASCADE  ON DELETE SET NULL,
 	CONSTRAINT ci_student_id_fk FOREIGN KEY (student_id) REFERENCES students(Std_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
+GO
+
+ALTER TABLE dbo.courses_students
+	ADD grade INT
 GO
 
 -- create procedure that takes the instructor ID and returns the name of the courses that he teaches and the number of student per course.
