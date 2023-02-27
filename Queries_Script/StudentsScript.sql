@@ -134,8 +134,10 @@ END
 --Calling
 EXECUTE updateStudent 7,@email='walid@gmail.com'
 
---------------------------------
---SP delete topic by id
+
+--==========================================================
+-- Delete Student table by id PROCEDURE --
+--==========================================================
 DROP PROCEDURE IF EXISTS deleteStudent
 GO
 CREATE PROCEDURE deleteStudent 
