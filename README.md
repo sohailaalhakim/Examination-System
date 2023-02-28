@@ -15,8 +15,7 @@ Database has:
 
 
 
-The system also includes the following reports to help the staff:
-All These Reports were implemented using Stored Procedures 
+The system also includes the following reports to help the staff (All These Reports were implemented using Stored Procedures):
 - Report that returns the students information according to Department (Using no parameter)
 - Report that takes the student ID and returns the grades of the student in all courses
 ![Screenshot (431)](https://user-images.githubusercontent.com/83030549/221995392-9e9e4052-50d7-4ae9-ad15-66e90d97c464.png)
