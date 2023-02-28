@@ -103,12 +103,18 @@ deleteDept 5
 
 
 --report 1
-CREATE PROC studentWithDepart 
+Create PROC [dbo].[departmentStudents] @dept_id INT
 AS
-	BEGIN TRY
-		SELECT * FROM student s,Department d
-		WHERE s.dept_id = D.dept_id
-	END TRY
-	BEGIN CATCH
-		SELECT'Error'
-	END CATCH
+IF EXISTS(SELECT * FROM department WHERE Dept_Id = @dept_id)
+BEGIN 
+IF EXISTS(SELECT s.Dept_id,D.Dept_Id FROM students s, department D WHERE s.Dept_id=D.Dept_Id AND D.Dept_Id=@dept_id)
+BEGIN
+SELECT s.* FROM students s, department d 
+WHERE s.Dept_id=D.Dept_Id AND D.Dept_Id=@dept_id
+END
+ELSE
+SELECT 'no students in this department'
+END
+ELSE
+SELECT 'department does not exist' AS 'result'
+GO
