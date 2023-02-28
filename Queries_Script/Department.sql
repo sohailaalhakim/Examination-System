@@ -1,23 +1,26 @@
 DROP TABLE IF EXISTS Department
 CREATE TABLE Department
 (
-Dept_Id INT PRIMARY KEY,
+Dept_Id INT PRIMARY KEY IDENTITY,
 Dept_Name VARCHAR(20) NOT NULL ,
 Dept_Phone NUMERIC,
 Dept_Location VARCHAR(50),
 Dept_Manager INT,
-Manager_HireDate DATE 
+Manager_HireDate DATE DEFAULT GETDATE()
 CONSTRAINT dept_manager_fk FOREIGN KEY (Dept_Manager) REFERENCES Instructors(ins_id) ON UPDATE CASCADE  ON DELETE SET NULL
 )
 
---ALTER TABLE dbo.Department
---	ADD CONSTRAINT department_instructors_fk 
---	FOREIGN KEY (Dept_Manager) REFERENCES Instructors(ins_id) ON UPDATE CASCADE  ON DELETE SET NULL
---GO
+ALTER TABLE dbo.Department
+	DROP Dept_ID  -- COLLATE Latin1_General_CI_AS
+	-- CONSTRAINT DF_Department_Manager_HireDate DEFAULT NULL
+GO
+
+GO
 
 
-INSERT INTO Department
-VALUES(6,'PD',12444,'Smart',6,'2020-02-18')
+
+--INSERT INTO Department(Dept_Id,Dept_Name, Dept_Phone, Dept_Location, Dept_Manager)
+--VALUES(3,'Cloud','12444','Smart',3)
 
 ----------------------------------------------------------------------
 -- [1] ----- Select -------
