@@ -11,9 +11,9 @@ CREATE TABLE courses_students(
 );
 GO
 
-ALTER TABLE dbo.courses_students
-	ADD grade INT
-GO
+--ALTER TABLE dbo.courses_students
+--	ADD grade INT
+--GO
 
 -- create procedure that takes the instructor ID and returns the name of the courses that he teaches and the number of student per course.
 
