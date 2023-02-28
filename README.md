@@ -4,7 +4,7 @@ This project is a SQL database to be built for an autmated system that allow onl
 
 ## Features
 
-Database system has:
+Database has:
 - An Entity Relationship Diagram (ERD) 
 - Backup
 - A database dictionary (Documentation)
