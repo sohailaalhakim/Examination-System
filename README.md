@@ -19,8 +19,7 @@ The system also includes the following reports to help the staff:
 All These Reports were implemented using Stored Procedures 
 - Report that returns the students information according to Department (Using no parameter)
 - Report that takes the student ID and returns the grades of the student in all courses
-![Screenshot (431)](https://user-images.githubusercontent.com/83030549/221994815-ec7b24e6-ee1b-4f96-9a26-1522e68b3dfd.png)
-
+![Screenshot (431)](https://user-images.githubusercontent.com/83030549/221995392-9e9e4052-50d7-4ae9-ad15-66e90d97c464.png)
 - Report that takes the instructor ID and returns the name of the courses that he teaches and the number of student per course
 - Report that takes course ID and returns its topics
 - Report that takes exam number and returns the questions in it and choices (freeform report)
