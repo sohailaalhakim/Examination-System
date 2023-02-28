@@ -1,0 +1,12 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+ CREATE PROCEDURE [dbo].[GETInsByID] ( @Id INT)
+  AS
+  BEGIN  TRY
+  PRINT 'this is Ins'
+  SELECT  * FROM Instructors i WHERE i.Ins_Id=@Id
+ END TRY
+ BEGIN CATCH
+ PRINT 'this Error is ' +ERROR_MESSAGE()
+ END CATCH
+GO
