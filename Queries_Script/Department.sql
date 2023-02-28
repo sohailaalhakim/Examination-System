@@ -10,10 +10,10 @@ Manager_HireDate DATE
 CONSTRAINT dept_manager_fk FOREIGN KEY (Dept_Manager) REFERENCES Instructors(ins_id) ON UPDATE CASCADE  ON DELETE SET NULL
 )
 
-ALTER TABLE dbo.Department
-	ADD CONSTRAINT department_instructors_fk 
-	FOREIGN KEY (Dept_Manager) REFERENCES Instructors(ins_id) ON UPDATE CASCADE  ON DELETE SET NULL
-GO
+--ALTER TABLE dbo.Department
+--	ADD CONSTRAINT department_instructors_fk 
+--	FOREIGN KEY (Dept_Manager) REFERENCES Instructors(ins_id) ON UPDATE CASCADE  ON DELETE SET NULL
+--GO
 
 
 INSERT INTO Department

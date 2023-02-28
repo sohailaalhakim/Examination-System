@@ -6,24 +6,21 @@ DROP TABLE IF EXISTS students;
 CREATE TABLE students(
 	Std_id INT IDENTITY,
 	Fname VARCHAR(200) NOT NULL,
-	Lname VARCHAR(200)  NULL,
+	Lname VARCHAR(200)  NOT NULL,
     age INT,
-	email VARCHAR(200) NULL,
-	Street VARCHAR(200) NULL,
-	Zip_code VARCHAR(200) NULL,
+	email VARCHAR(200) ,
+	Street VARCHAR(200) ,
+	Zip_code VARCHAR(200) ,
 	phone VARCHAR(200) NULL,
 	password INT,
 	Dept_id INT,
 	supervise_id INT,
 	CONSTRAINT Std_id PRIMARY KEY(Std_id),
-    CONSTRAINT topic_course_id FOREIGN KEY (Dept_id) REFERENCES Department(Dept_Id) ,
-	CONSTRAINT supervise_id FOREIGN KEY (supervise_id) REFERENCES Instructors(Ins_Id),
-
+    CONSTRAINT students_departments FOREIGN KEY (Dept_id) REFERENCES Department(Dept_Id) ,
+	CONSTRAINT students_instructors FOREIGN KEY (supervise_id) REFERENCES Instructors(Ins_Id),
 );
 
-ALTER TABLE dbo.students
-	ADD CONSTRAINT students_department 
-	FOREIGN KEY (Dept_id) REFERENCES Department(Dept_Id) ON UPDATE CASCADE  ON DELETE SET NULL
+
 GO
 --==========================================================
 -- Select All Students PROCEDURE --

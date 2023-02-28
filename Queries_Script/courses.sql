@@ -1,4 +1,14 @@
 
+
+CREATE TABLE students_courses(
+	id INT IDENTITY,
+	student_id INT,
+	course_id INT,
+	CONSTRAINT students_courses_id_pk PRIMARY KEY(id),
+	CONSTRAINT fk_courses_students_courses_id FOREIGN KEY (course_id) REFERENCES courses(id) ON UPDATE CASCADE ON DELETE SET NULL,
+	CONSTRAINT fk_students_students_courses_id FOREIGN KEY (student_id) REFERENCES students(Std_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 ---------------------------------------
 -- SP select all courses
 CREATE PROCEDURE selectCourses 
