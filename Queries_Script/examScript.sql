@@ -156,13 +156,24 @@ AS
 		ELSE
 			BEGIN	
 				DECLARE @score INT
+				DECLARE @fullscore REAL
 
-				SELECT @score = COUNT(*) FROM exam_answers ea
+				SELECT @score = SUM(ISNULL(eq.score, 0)) FROM exam_answers ea
 				INNER JOIN exams e ON e.id = ea.exam_id
 				INNER JOIN questions q ON ea.question_id = q.id
-				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id AND q.correct_ans = ea.answer
+				INNER JOIN exams_questions eq ON q.id = eq.question_id AND e.id = eq.exam_id
+				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id AND ea.answer = q.correct_ans 
 
-				UPDATE courses_students SET grade = @score WHERE student_id = @student_id AND course_id = @course_id 
+				
+				SELECT @fullscore = SUM(ISNULL(eq.score, 0)) FROM exam_answers ea
+				INNER JOIN exams e ON e.id = ea.exam_id
+				INNER JOIN questions q ON ea.question_id = q.id
+				INNER JOIN exams_questions eq ON q.id = eq.question_id AND e.id = eq.exam_id
+				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id 
+
+				SET @score = @score * 100;
+
+				UPDATE courses_students SET grade = @score/@fullscore WHERE student_id = @student_id AND course_id = @course_id 
 			END		
 	END TRY
 	BEGIN CATCH
@@ -170,8 +181,8 @@ AS
 	END CATCH
 
 
-	EXEC PROC_examCorrect @exam_id = 7
-						 ,@student_id = 7
+	EXEC PROC_examCorrect @exam_id = 8
+						 ,@student_id = 4
 						 ,@course_id = 11
 			
 			
@@ -212,3 +223,5 @@ AS
 	EXEC PROC_getStudentAnswerWithModel @exam_id = 7
 						 ,@student_id = 7
 						 ,@course_id = 11
+
+
