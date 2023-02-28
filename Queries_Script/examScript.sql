@@ -34,6 +34,7 @@ CREATE PROCEDURE  [dbo].[PROC_generate_exam]
 	@fullScore INT,
 	@tfNum INT,
 	@mcqNum INT
+	WITH ENCRYPTION
 AS
 	BEGIN TRY
 		IF NOT EXISTS (SELECT * FROM courses WHERE id=@courseId)
@@ -70,7 +71,7 @@ AS
 
 	GO
 	EXECUTE PROC_generate_exam @examName='programming',
-								@courseId = 1
+								@courseId = 11
 							  ,@duration = 45
 							  ,@date = '2023-02-19'
 							  ,@fullScore = 50
@@ -101,6 +102,7 @@ CREATE PROCEDURE  [dbo].[PRO_examAnswers]
 	@student_id INT,
 	@questionId INT,
 	@ans NCHAR(1)
+	WITH ENCRYPTION
 AS
 	BEGIN TRY
 		IF NOT EXISTS (SELECT * FROM exams WHERE id=@examId)
@@ -139,6 +141,7 @@ CREATE PROCEDURE  [dbo].[PROC_examCorrect]
     @exam_id INT,
 	@student_id INT,
 	@course_id INT
+	WITH ENCRYPTION
 AS
 	BEGIN TRY
 		IF NOT EXISTS (SELECT * FROM exams WHERE id=@exam_id)
@@ -181,8 +184,8 @@ AS
 	END CATCH
 
 
-	EXEC PROC_examCorrect @exam_id = 8
-						 ,@student_id = 4
+	EXEC PROC_examCorrect @exam_id = 4
+						 ,@student_id = 1
 						 ,@course_id = 11
 			
 			
@@ -192,6 +195,7 @@ CREATE PROCEDURE  [dbo].[PROC_getStudentAnswerWithModel]
     @exam_id INT,
 	@student_id INT,
 	@course_id INT
+	WITH ENCRYPTION
 AS
 	BEGIN TRY
 		IF NOT EXISTS (SELECT * FROM exams WHERE id=@exam_id)
@@ -211,7 +215,7 @@ AS
 				SELECT q.content, q.correct_ans, ea.answer AS 'student_ans' FROM exam_answers ea
 				INNER JOIN exams e ON e.id = ea.exam_id
 				INNER JOIN questions q ON ea.question_id = q.id
-				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id AND q.correct_ans = ea.answer
+				WHERE ea.student_id = @student_id AND ea.exam_id = @exam_id
 			END		
 	END TRY
 	BEGIN CATCH
@@ -220,8 +224,8 @@ AS
 	
 
 	
-	EXEC PROC_getStudentAnswerWithModel @exam_id = 7
-						 ,@student_id = 7
+	EXEC PROC_getStudentAnswerWithModel @exam_id = 4
+						 ,@student_id = 1
 						 ,@course_id = 11
 
 
