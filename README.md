@@ -7,7 +7,6 @@ This project is a SQL database to be built for an autmated system that allow onl
 Database has:
 - An Entity Relationship Diagram (ERD) 
 ![examSystem (2)](https://user-images.githubusercontent.com/83030549/222906573-19e71e90-61ab-43f3-b530-b4009e1b5508.png)
-- Mapping 
 ![Screenshot (442)](https://user-images.githubusercontent.com/83030549/222906102-f609b427-0466-4157-a554-cf58fc32e740.png)
 - Backup
 - A database dictionary (Documentation)
