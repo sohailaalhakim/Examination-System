@@ -23,7 +23,7 @@ The system also includes the following reports to help the staff (All these repo
 ![Screenshot (431)](https://user-images.githubusercontent.com/83030549/221995392-9e9e4052-50d7-4ae9-ad15-66e90d97c464.png)
 - Report that takes the instructor ID and returns the name of the courses that he teaches and the number of student per course
 - Report that takes course ID and returns its topics
- ![Screenshot (447)](https://user-images.githubusercontent.com/83030549/222906721-0b382c48-0ef4-4024-bc13-e98fd39fb2f8.png)
+![Screenshot (447)](https://user-images.githubusercontent.com/83030549/222906721-0b382c48-0ef4-4024-bc13-e98fd39fb2f8.png)
 - Report that takes exam number and returns the questions in it and choices (freeform report)
 ![Screenshot (444)](https://user-images.githubusercontent.com/83030549/222906082-70508652-3f05-4921-98f0-35dc108a2f50.png)
 
