@@ -1,6 +1,6 @@
 # Examination System
 
-This project is a SQL database to be built for an autmated system that allow online exams to be taken. The system includes stored procedures that allow for selecting, inserting, updating, and deleting data in any table.
+This project is a SQL database to be built for an automated system that allow online exams to be taken. The system includes stored procedures that allow for selecting, inserting, updating, and deleting data in any table.
 
 ## Features
 
